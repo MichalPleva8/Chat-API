@@ -128,7 +128,14 @@
       width: 80%;
       height: 100vh;
       position: fixed;
-      overflow-y: scroll;
+      overflow-y:
+      <?php
+        if (isset($_SESSION['uidUsers'])) {
+          echo 'scroll';
+        } else {
+          echo 'none';
+        }
+      ?>;
       right: 0;
       top: 0;
     }

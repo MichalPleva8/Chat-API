@@ -7,7 +7,7 @@ if (isset($_SESSION['uidUsers'])) {
   $sql = "SELECT * FROM messages";
   $result = mysqli_query($conn, $sql);
 
-  echo '';
+  echo '<div class="message-wrap">';
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
       if ($row["uid"] != $messegeUid) {
@@ -19,5 +19,5 @@ if (isset($_SESSION['uidUsers'])) {
      . $row["message"] .'</p>'.'</div>';
     }
   }
-  echo '';
+  echo '</div>';
 }
