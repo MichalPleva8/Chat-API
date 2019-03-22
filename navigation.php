@@ -36,6 +36,7 @@
     nav {
       width: 20%;
       background: #fff;
+      border-right: 1px solid #ddd;
       height: 100vh;
       padding: 10px 0px;
       float: left;
@@ -43,7 +44,6 @@
       left: 0;
       top: 0;
     }
-
 
     nav .nav-logo {
       width: 90%;
@@ -128,14 +128,6 @@
       width: 80%;
       height: 100vh;
       position: fixed;
-      overflow-y:
-      <?php
-        if (isset($_SESSION['uidUsers'])) {
-          echo 'scroll';
-        } else {
-          echo 'none';
-        }
-      ?>;
       right: 0;
       top: 0;
     }
@@ -213,9 +205,10 @@
 
     .message-wrap {
       width: auto;
-      height: auto;
-      padding: 15px;
+      height: 100%;
+      padding: 15px 15px 55px 15px;
       background: none;
+      overflow-y: scroll;
     }
 
     .message {
@@ -264,6 +257,22 @@
       margin: 5px 0px;
     }
 
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
     </style>
     <title>Chat API</title>
   </head>

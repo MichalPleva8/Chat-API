@@ -41,7 +41,6 @@
           $(".message-wrap").load("includes/load.inc.php");
           var interval = setInterval(function() {
             $(".message-wrap").load("includes/load.inc.php");
-            console.log(document.getElementsByClassName('message-wrap'));
           }, 3000);
         });
       </script>
