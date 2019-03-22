@@ -257,6 +257,50 @@
       margin: 5px 0px;
     }
 
+    .navigation-color {
+      width: 90%;
+      height: auto;
+      margin: 15px auto;
+    }
+
+    .navigation-color ul {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .navigation-color ul li {
+      list-style-type: none;
+      border: 5px solid #000;
+      color: #fff;
+      padding: 1px;
+      border-radius: 100%;
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .navigation-color ul li:nth-child(1) {
+      background: red;
+    }
+
+    .navigation-color ul li:nth-child(2) {
+      background: green;
+    }
+    .navigation-color ul li:nth-child(3) {
+      background: blue;
+    }
+    .navigation-color ul li:nth-child(4) {
+      background: orange;
+    }
+    .navigation-color ul li:nth-child(5) {
+      background: purple;
+    }
+
+    /* Scroll bar */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -295,6 +339,15 @@
             <a href="signup.php" class="default-btn">Signup</a>';
         }
       ?>
+      </div>
+      <div class="navigation-color">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
       <p class="nav-footer">Coded with ❤️ by Michal Pleva</p>
     </nav>
