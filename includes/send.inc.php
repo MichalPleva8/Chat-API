@@ -4,7 +4,6 @@ if (isset($_POST['send-text'])) {
   session_start();
   require 'config.inc.php';
 
-  $mojemeno = 123;
   $messegeText = $_POST['chatbox'];
   $messegeUid = $_SESSION['uidUsers'];
 
