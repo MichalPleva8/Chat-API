@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($_SESSION['uidUsers'])) {
   require 'config.inc.php';
@@ -7,7 +8,7 @@ if (isset($_SESSION['uidUsers'])) {
   $sql = "SELECT * FROM messages";
   $result = mysqli_query($conn, $sql);
 
-  echo '';
+
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
       if ($row["uid"] != $messegeUid) {
@@ -19,5 +20,4 @@ if (isset($_SESSION['uidUsers'])) {
      . $row["message"] .'</p>'.'</div>';
     }
   }
-  echo '';
 }
