@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
           $_SESSION['idUsers'] = $row['id'];
           $_SESSION['uidUsers'] = $row['uid'];
 
-          header("Location: ../index.php?login=success");
+          header("Location: ../index.php");
           exit();
         } else {
           header("Location: ../index.php?error=wrongpwd");

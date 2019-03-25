@@ -3,17 +3,33 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+
+    <link rel="icon" href="img/icon.png">
     <!-- <link rel="stylesheet" href="css/style.css" media="all" type="text/css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136874114-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-136874114-1');
+    </script>
+
+    <!-- jquery -->
     <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
     <style media="screen">
 
     <?php
     $primaryColor = "#005EFF";
     $secondaryColor = "#0020B2";
      ?>
+
     * {
       margin: 0;
       padding: 0;
@@ -78,7 +94,7 @@
     .logout-btn {
       padding: 10px 15px;
       width: 90%;
-      margin: 5px 5%;
+      margin: 10px 5% 20px;
       background: #000;
       color: #fff;
       font-weight: bold;
@@ -86,7 +102,7 @@
       border-radius: 5px;
     }
 
-    /* .default-btn {
+    .default-btn {
       padding: 10px 15px;
       width: 90%;
       margin: 5px 5%;
@@ -95,7 +111,7 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 5px;
-    } */
+    }
 
     nav .login-wrap a {
       color: #000;
@@ -111,6 +127,12 @@
       padding: 5px 10px;
       width: 90%;
       margin: 5px 5%;
+    }
+
+    .nav-fast-menu {
+      width: 100%;
+      height: auto;
+      text-align: center;
     }
 
     p.nav-footer {
@@ -195,12 +217,16 @@
     }
 
     .chatbox-wrap button {
-      width: 10%;
+      width: 5%;
       height: 100%;
       background: <?php echo $primaryColor; ?>;
       color: #fff;
       float: left;
       padding: 15px;
+    }
+
+    .chatbox-wrap button:nth-child(2) {
+      background: #333;
     }
 
     .message-wrap {
@@ -300,6 +326,41 @@
       background: purple;
     }
 
+
+    /* Settings  */
+    .settings-btn {
+      margin-bottom: 0;
+    }
+
+    .nav-settings {
+      width: 90%;
+      height: auto;
+      margin: none;
+    }
+
+    .nav-settings button {
+      width: 100%;
+      height: auto;
+      color: #fff;
+      margin: none;
+    }
+
+
+    /* Media querys */
+    @media only screen and (max-width: 720px) {
+      main {
+        width: 100%;
+        height: 100%;
+      }
+
+      nav {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+
+
     /* Scroll bar */
     ::-webkit-scrollbar {
       width: 10px;
@@ -322,13 +383,21 @@
   </head>
   <body>
     <nav>
-      <a href="index.php"><div class="nav-logo"><p>Facebook<sup>2</sup></p></div></a>
+      <a href="index.php"><div class="nav-logo"><p>Chat-API</p></div></a>
       <div class="login-wrap">
       <?php
         if (isset($_SESSION['uidUsers'])) {
           echo '<p class="nav-username">'. $_SESSION['uidUsers'] .'</p><form action="includes/logout.inc.php" method="post">
             <button type="submit" name="logout" class="logout-btn">Loqout</button>
-          </form>';
+          </form>
+          <button class="default-btn" id="settings-btn">Settings</button>
+          <div class="nav-settings">
+            <button type="button" name="dark-mode">Dark Mode 💡</button>
+          </div>
+          <button class="default-btn">Report Bug</button>
+          <div class="nav-fast-menu">
+            <button type="button" name="autoRefresh" class="default-btn">Auto Refresh</button>
+          </div>';
         } else {
           echo '
             <form action="includes/login.inc.php" method="post">
@@ -336,11 +405,11 @@
               <input type="password" name="password" placeholder="Password">
               <button type="submit" name="login" class="default-btn">Login</button>
             </form>
-            <a href="signup.php" class="default-btn">Signup</a>';
+            <a href="signup.php">Signup</a>';
         }
       ?>
       </div>
-      <div class="navigation-color">
+      <!-- <div class="navigation-color">
         <ul>
           <li></li>
           <li></li>
@@ -348,6 +417,6 @@
           <li></li>
           <li></li>
         </ul>
-      </div>
+      </div> -->
       <p class="nav-footer">Coded with ❤️ by Michal Pleva</p>
     </nav>
