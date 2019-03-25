@@ -328,21 +328,35 @@
 
 
     /* Settings  */
-    .settings-btn {
-      margin-bottom: 0;
+    #settings-btn {
+      padding: 10px 15px;
+      width: 90%;
+      margin: 5px 5% 0px 5%;
+      background: #eee;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
     }
 
     .nav-settings {
       width: 90%;
       height: auto;
-      margin: none;
+      margin: 0px 0px 10px 0px;
     }
 
     .nav-settings button {
       width: 100%;
       height: auto;
-      color: #fff;
-      margin: none;
+      color: #000;
+      font-weight: bold;
+      margin: 0 5%;
+      cursor: pointer;
+      border: none;
+    }
+
+    .nav-settings button:hover {
+      background: #ccc;
     }
 
 
@@ -390,9 +404,10 @@
           echo '<p class="nav-username">'. $_SESSION['uidUsers'] .'</p><form action="includes/logout.inc.php" method="post">
             <button type="submit" name="logout" class="logout-btn">Loqout</button>
           </form>
-          <button class="default-btn" id="settings-btn">Settings</button>
+          <button id="settings-btn">Settings</button>
           <div class="nav-settings">
             <button type="button" name="dark-mode">Dark Mode 💡</button>
+            <button type="button" name="dark-mode">Message scale 📺</button>
           </div>
           <button class="default-btn">Report Bug</button>
           <div class="nav-fast-menu">
