@@ -36,9 +36,8 @@
             $(".message-wrap").load("includes/load.inc.php");
             chat.scroll(0, chat.scrollHeight);
           }, 1500);
-
-
         });
       </script>
+      <script src="main.js"></script>
   </body>
 </html>

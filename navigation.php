@@ -3,20 +3,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-
     <link rel="icon" href="img/icon.png">
     <!-- <link rel="stylesheet" href="css/style.css" media="all" type="text/css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136874114-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-136874114-1');
-    </script>
 
     <!-- jquery -->
     <script
@@ -75,6 +64,28 @@
 
     nav a .nav-logo {
       text-decoration: none;
+    }
+
+    .profile-wraper {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .profile {
+      width: 150px;
+      height: 150px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      background: <?php if (file_exists('./profiles/' . $_SESSION['uidUsers'] . '.profile.JPG')) {
+        echo 'url(./profiles/' . $_SESSION['uidUsers'] . '.profile.JPG)';
+      } else {
+        echo 'url("img/default.png")';
+      } ?>;
+      background-position: center;
+      background-size: cover;
     }
 
     nav form input {
@@ -401,12 +412,13 @@
       <div class="login-wrap">
       <?php
         if (isset($_SESSION['uidUsers'])) {
+          echo '<div class="profile-wraper"><div class="profile"></div></div>';
           echo '<p class="nav-username">'. $_SESSION['uidUsers'] .'</p><form action="includes/logout.inc.php" method="post">
             <button type="submit" name="logout" class="logout-btn">Loqout</button>
           </form>
           <button id="settings-btn">Settings</button>
           <div class="nav-settings">
-            <button type="button" name="dark-mode">Dark Mode 💡</button>
+            <button type="button" id="dark-mode">Dark Mode 💡</button>
             <button type="button" name="dark-mode">Message scale 📺</button>
           </div>
           <button class="default-btn">Report Bug</button>
@@ -424,14 +436,6 @@
         }
       ?>
       </div>
-      <!-- <div class="navigation-color">
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div> -->
       <p class="nav-footer">Coded with ❤️ by Michal Pleva</p>
     </nav>
+    <script src="main.js"></script>

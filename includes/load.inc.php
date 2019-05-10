@@ -13,6 +13,7 @@ if (isset($_SESSION['uidUsers'])) {
     while ($row = mysqli_fetch_assoc($result)) {
       if ($row["uid"] != $messegeUid) {
         echo '<div class="host-message">';
+        // echo '<img src="'. './profiles/' . $_SESSION['uidUsers'] . '.profile.JPG' . '" class="message-profile">';
       } else {
         echo '<div class="message">';
       }
