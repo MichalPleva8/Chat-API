@@ -32,10 +32,10 @@
           var chat = document.querySelector('.message-wrap');
           chat.scroll(0, chat.scrollHeight);
           $(".message-wrap").load("includes/load.inc.php");
-          var interval = setInterval(function() {
-            $(".message-wrap").load("includes/load.inc.php");
-            chat.scroll(0, chat.scrollHeight);
-          }, 1500);
+          // var interval = setInterval(function() {
+          //   $(".message-wrap").load("includes/load.inc.php");
+          //   chat.scroll(0, chat.scrollHeight);
+          // }, 1500);
         });
       </script>
       <script src="main.js"></script>

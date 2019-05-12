@@ -86,6 +86,32 @@
       } ?>;
       background-position: center;
       background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: .3s;
+    }
+
+    label.profile-upload {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    .profile-upload input[type="file"] {
+      display: none;
+      cursor: pointer;
+    }
+
+    .fa-camera {
+      color: #fff;
+      font-size: 4rem;
+      display: none;
+      opacity: .9;
     }
 
     nav form input {
@@ -146,6 +172,9 @@
       text-align: center;
     }
 
+
+
+
     p.nav-footer {
       width: 100%;
       height: auto;
@@ -163,6 +192,10 @@
       position: fixed;
       right: 0;
       top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     .signup-wrap {
@@ -241,46 +274,69 @@
     }
 
     .message-wrap {
-      width: auto;
+      width: 100%;
       height: 100%;
       padding: 15px 15px 55px 15px;
       background: none;
       overflow-y: scroll;
     }
 
-    .message {
+    .message-row {
       width: 100%;
+      height: auto;
+      display: flex;
+    }
+
+    .message-profile {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .message {
+      width: 50%;
       height: auto;
       padding: 10px;
       background: <?php echo $primaryColor ?>;
       color: #fff;
       margin-bottom: 10px;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
     }
 
     .host-message {
-      width: 100%;
+      width: 50%;
       height: auto;
       padding: 10px;
       background: #aaa;
       color: #fff;
       margin-bottom: 10px;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
     }
 
     .message h4 {
-      margin: 5px 0px;
+      margin-left: 10px;
     }
 
     .message p {
-      margin: 5px 0px;
+      margin-left: 20px;
+      line-height: 24px;
+    }
+
+    .host-message h4 {
+      margin-left: 10px;
+    }
+
+    .host-message p {
+      margin-left: 20px;
     }
 
     .welcome-text {
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      width: 60%;
+      height: auto;
       font-size: 1.5rem;
       text-align: center;
     }
@@ -347,7 +403,8 @@
       color: #000;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 5px 5px 0px 0px;
+      border-bottom: 1px solid #ccc;
     }
 
     .nav-settings {
@@ -407,12 +464,19 @@
     <title>Chat API</title>
   </head>
   <body>
+
     <nav>
       <a href="index.php"><div class="nav-logo"><p>Chat-API</p></div></a>
       <div class="login-wrap">
       <?php
         if (isset($_SESSION['uidUsers'])) {
-          echo '<div class="profile-wraper"><div class="profile"></div></div>';
+          echo '<div class="profile-wraper">
+                  <form action="includes/profile.inc.php" method="post" enctype="multipart/form-data">
+                    <label class="profile-upload">
+                    <input type="file" name="file" onchange="this.form.submit()">
+                    </label><div class="profile"><i class="fas fa-camera"></i>
+                  </form></div>
+                </div>';
           echo '<p class="nav-username">'. $_SESSION['uidUsers'] .'</p><form action="includes/logout.inc.php" method="post">
             <button type="submit" name="logout" class="logout-btn">Loqout</button>
           </form>
@@ -438,4 +502,23 @@
       </div>
       <p class="nav-footer">Coded with ❤️ by Michal Pleva</p>
     </nav>
+    <script type="text/javascript">
+      // Profile picture change
+      var profileInput = document.querySelector('.profile-upload');
+      var profile = document.querySelector('.profile');
+      var profileIcon = document.querySelector('.fa-camera');
+
+      profile.style.transition = ".5s ease-in-out";
+
+      profileInput.onmouseenter = function () {
+        profile.style.filter = "brightness(90%)"
+        profileIcon.style.display = "block";
+        profileIcon.style.opacity = ".5";
+      }
+
+      profileInput.onmouseleave = function () {
+        profile.style.filter = "blur(0px)";
+        profileIcon.style.display = "none";
+      }
+    </script>
     <script src="main.js"></script>

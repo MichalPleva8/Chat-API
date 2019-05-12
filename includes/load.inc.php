@@ -13,9 +13,14 @@ if (isset($_SESSION['uidUsers'])) {
     while ($row = mysqli_fetch_assoc($result)) {
       if ($row["uid"] != $messegeUid) {
         echo '<div class="host-message">';
-        // echo '<img src="'. './profiles/' . $_SESSION['uidUsers'] . '.profile.JPG' . '" class="message-profile">';
+        if (file_exists('../profiles/' . $row['uid'] . '.profile.jpg')) {
+          echo '<img src="'. './profiles/' . $row['uid'] . '.profile.jpg' . '" class="message-profile">';
+        } else {
+          echo '<img src="./img/default.png" class="message-profile">';
+        }
       } else {
         echo '<div class="message">';
+        echo '<img src="'. './profiles/' . $messegeUid . '.profile.jpg' . '" class="message-profile">';
       }
       echo '<h4>'. $row["uid"] .'</h4>'.'<p>'
      . $row["message"] .'</p>'.'</div>';

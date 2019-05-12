@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -16,12 +20,14 @@ body {
 nav {
   width: 20%;
   background: #fff;
+  border-right: 1px solid #ddd;
   height: 100vh;
   padding: 10px 0px;
   float: left;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
-
 
 nav .nav-logo {
   width: 90%;
@@ -35,7 +41,56 @@ nav .nav-logo {
   cursor: pointer;
 }
 
-nav .nav-logo p, nav .nav-logo sup {
+nav a .nav-logo {
+  text-decoration: none;
+}
+
+.profile-wraper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.profile {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background: <?php if (file_exists('./profiles/' . $_SESSION['uidUsers'] . '.profile.JPG')) {
+    echo 'url(./profiles/' . $_SESSION['uidUsers'] . '.profile.JPG)';
+  } else {
+    echo 'url("img/default.png")';
+  } ?>;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s;
+}
+
+label.profile-upload {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.profile-upload input[type="file"] {
+  display: none;
+  cursor: pointer;
+}
+
+.fa-camera {
+  color: #fff;
+  font-size: 4rem;
+  display: none;
+  opacity: .9;
 }
 
 nav form input {
@@ -50,16 +105,28 @@ nav form button {
   padding: 5px 10px;
   width: 90%;
   margin: 5px 5%;
-  border-radius: 20px;
 }
 
 .logout-btn {
-  padding: 5px 10px;
+  padding: 10px 15px;
   width: 90%;
-  margin: 5px 5%;
+  margin: 10px 5% 20px;
   background: #000;
   color: #fff;
-  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.default-btn {
+  padding: 10px 15px;
+  width: 90%;
+  margin: 5px 5%;
+  background: #eee;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 nav .login-wrap a {
@@ -78,6 +145,15 @@ nav button {
   margin: 5px 5%;
 }
 
+.nav-fast-menu {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+
+
+
 p.nav-footer {
   width: 100%;
   height: auto;
@@ -92,7 +168,13 @@ main {
   float: left;
   width: 80%;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .signup-wrap {
@@ -142,22 +224,218 @@ p.error-display {
 }
 
 .chatbox-wrap {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 80%;
   height: auto;
   /* overflow: hidden; */
+  border: 1px solid #ddd;
 }
 
 .chatbox-wrap input {
-  width: 80%;
+  width: 90%;
   height: 100%;
-
+  float: left;
+  padding: 15px;
 }
 
 .chatbox-wrap button {
-  width: 20%;
+  width: 5%;
   height: 100%;
-  background: blue;
+  background: <?php echo $primaryColor; ?>;
   color: #fff;
+  float: left;
+  padding: 15px;
+}
+
+.chatbox-wrap button:nth-child(2) {
+  background: #333;
+}
+
+.message-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 15px 15px 55px 15px;
+  background: none;
+  overflow-y: scroll;
+}
+
+.message-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+.message-profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.message {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  background: <?php echo $primaryColor ?>;
+  color: #fff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.host-message {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  background: #aaa;
+  color: #fff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.message h4 {
+  margin-left: 10px;
+}
+
+.message p {
+  margin-left: 20px;
+  line-height: 24px;
+}
+
+.host-message h4 {
+  margin-left: 10px;
+}
+
+.host-message p {
+  margin-left: 20px;
+}
+
+.welcome-text {
+  width: 60%;
+  height: auto;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.nav-username {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 5px 0px;
+}
+
+.navigation-color {
+  width: 90%;
+  height: auto;
+  margin: 15px auto;
+}
+
+.navigation-color ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navigation-color ul li {
+  list-style-type: none;
+  border: 5px solid #000;
+  color: #fff;
+  padding: 1px;
+  border-radius: 100%;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.navigation-color ul li:nth-child(1) {
+  background: red;
+}
+
+.navigation-color ul li:nth-child(2) {
+  background: green;
+}
+.navigation-color ul li:nth-child(3) {
+  background: blue;
+}
+.navigation-color ul li:nth-child(4) {
+  background: orange;
+}
+.navigation-color ul li:nth-child(5) {
+  background: purple;
+}
+
+
+/* Settings  */
+#settings-btn {
+  padding: 10px 15px;
+  width: 90%;
+  margin: 5px 5% 0px 5%;
+  background: #eee;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px 5px 0px 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-settings {
+  width: 90%;
+  height: auto;
+  margin: 0px 0px 10px 0px;
+}
+
+.nav-settings button {
+  width: 100%;
+  height: auto;
+  color: #000;
+  font-weight: bold;
+  margin: 0 5%;
+  cursor: pointer;
+  border: none;
+}
+
+.nav-settings button:hover {
+  background: #ccc;
+}
+
+
+/* Media querys */
+@media only screen and (max-width: 720px) {
+  main {
+    width: 100%;
+    height: 100%;
+  }
+
+  nav {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+
+/* Scroll bar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
